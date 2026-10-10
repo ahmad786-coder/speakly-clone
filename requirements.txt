@@ -1,0 +1,18 @@
+# Speakly voice-cloning microservice dependencies.
+#
+# torch/torchaudio must come from the CPU wheel index. pip honours the
+# extra-index-url line below, so a plain `pip install -r requirements.txt`
+# works (CPU-only builds, no CUDA).
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+coqui-tts==0.27.5
+fastapi
+uvicorn[standard]
+python-multipart
+
+# XTTS-v2 compatibility pins (see README):
+#   * torch <2.9 avoids the torchcodec audio-IO requirement
+#   * transformers 4.x (5.x removed isin_mps_friendly used by XTTS)
+torch==2.8.0
+torchaudio==2.8.0
+transformers>=4.57,<5
